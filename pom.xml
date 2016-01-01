@@ -3,7 +3,7 @@
 
     <groupId>net.middell</groupId>
     <artifactId>existdb-maven-plugin</artifactId>
-    <version>0.9</version>
+    <version>1.0-SNAPSHOT</version>
     <packaging>maven-plugin</packaging>
 
     <name>eXist-db Maven Plugin</name>
@@ -30,7 +30,7 @@
         <connection>scm:git:git@github.com:gremid/existdb-maven-plugin.git</connection>
         <developerConnection>scm:git:git@github.com:gremid/existdb-maven-plugin.git</developerConnection>
         <url>git@github.com:gremid/existdb-maven-plugin.git</url>
-      <tag>existdb-maven-plugin-0.9</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <distributionManagement>
