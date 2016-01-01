@@ -186,7 +186,7 @@
                         <email>${project.organization.url}</email>
                     </properties>
                     <excludes>
-                        <exclude>**/pom.xml<exclude>
+                        <exclude>**/pom.xml</exclude>
                         <exclude>**/README.md</exclude>
                         <exclude>**/LICENSE.txt</exclude>
                         <exclude>**/checkstyle.xml</exclude>
