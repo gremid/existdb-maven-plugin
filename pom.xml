@@ -22,7 +22,7 @@
 
     <groupId>net.middell</groupId>
     <artifactId>existdb-maven-plugin</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.9-SNAPSHOT</version>
     <packaging>maven-plugin</packaging>
 
     <name>eXist-db Maven Plugin</name>
@@ -50,6 +50,14 @@
         <developerConnection>scm:git:git@github.com:gremid/existdb-maven-plugin.git</developerConnection>
         <url>git@github.com:gremid/existdb-maven-plugin.git</url>
     </scm>
+
+    <distributionManagement>
+        <repository>
+            <id>internal.repo</id>
+            <name>Temporary Staging Repository</name>
+            <url>file://${project.build.directory}/mvn-repo</url>
+        </repository>
+    </distributionManagement>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -153,6 +161,13 @@
                 </executions>
             </plugin>
             <plugin>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.2</version>
+                <configuration>
+                    <altDeploymentRepository>internal.repo::default::file://${project.build.directory}/mvn-repo</altDeploymentRepository>
+                </configuration>
+            </plugin>
+            <plugin>
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>2.17</version>
                 <configuration>
@@ -206,15 +221,32 @@
                 <groupId>com.github.github</groupId>
                 <artifactId>site-maven-plugin</artifactId>
                 <version>0.12</version>
-                <configuration>
-                    <message>Creating site for ${project.version}</message>
-                </configuration>
                 <executions>
                     <execution>
+                        <id>site</id>
+                        <configuration>
+                            <message>Creating site for ${project.version}</message>
+                        </configuration>
                         <goals>
                             <goal>site</goal>
                         </goals>
                         <phase>site</phase>
+                    </execution>
+                    <execution>
+                        <id>deploy</id>
+                        <configuration>
+                            <message>Maven artifacts for ${project.version}</message>
+                            <noJekyll>true</noJekyll>
+                            <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
+                            <branch>refs/heads/mvn-repo</branch>
+                            <includes>
+                                <include>**/*</include>
+                            </includes>
+                        </configuration>
+                        <goals>
+                            <goal>site</goal>
+                        </goals>
+                        <phase>deploy</phase>
                     </execution>
                 </executions>
             </plugin>
