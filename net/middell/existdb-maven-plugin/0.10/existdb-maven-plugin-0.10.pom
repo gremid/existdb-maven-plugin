@@ -1,28 +1,9 @@
-<!--
-
-    This file is part of eXist-db Maven Plugin.
-
-    eXist-db Maven Plugin is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    eXist-db Maven Plugin is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with eXist-db Maven Plugin.  If not, see <http://www.gnu.org/licenses/>.
-
--->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>net.middell</groupId>
     <artifactId>existdb-maven-plugin</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.10</version>
     <packaging>maven-plugin</packaging>
 
     <name>eXist-db Maven Plugin</name>
@@ -49,7 +30,8 @@
         <connection>scm:git:git@github.com:gremid/existdb-maven-plugin.git</connection>
         <developerConnection>scm:git:git@github.com:gremid/existdb-maven-plugin.git</developerConnection>
         <url>git@github.com:gremid/existdb-maven-plugin.git</url>
-    </scm>
+      <tag>existdb-maven-plugin-0.10</tag>
+  </scm>
 
     <distributionManagement>
         <repository>
@@ -168,6 +150,11 @@
                 </configuration>
             </plugin>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
+            </plugin>
+            <plugin>
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>2.17</version>
                 <configuration>
@@ -199,6 +186,7 @@
                         <email>${project.organization.url}</email>
                     </properties>
                     <excludes>
+                        <exclude>**/pom.xml</exclude>
                         <exclude>**/README.md</exclude>
                         <exclude>**/LICENSE.txt</exclude>
                         <exclude>**/checkstyle.xml</exclude>
