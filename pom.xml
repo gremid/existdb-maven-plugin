@@ -3,7 +3,7 @@
 
     <groupId>net.middell</groupId>
     <artifactId>existdb-maven-plugin</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.10-SNAPSHOT</version>
     <packaging>maven-plugin</packaging>
 
     <name>eXist-db Maven Plugin</name>

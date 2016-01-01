@@ -27,7 +27,7 @@ import java.util.stream.Stream;
 
 /**
  * Facilitates authenticated access to collections and resources in
- * an <a href="http://exist-db.org/" title="Homepage">eXist XML database</a>.
+ * an <a href="http://exist-db.org/">eXist XML database</a>.
  *
  * @author <a href="http://gregor.middell.net/">Gregor Middell</a>
  */
@@ -67,7 +67,7 @@ public class ExistDatabase {
      *
      * @param uri the {@link ExistUri eXist-specific URI} of the collection to wrap
      * @return a handle for accessing the collection
-     * @throws XMLDBException propagated from {@link Collection#Collection(URI)}
+     * @throws XMLDBException propagated from {@link DatabaseManager#getCollection(String)}
      */
     public Collection collection(URI uri) throws XMLDBException {
         return new Collection(uri);
@@ -79,7 +79,8 @@ public class ExistDatabase {
      * @param collection handle of the resource's parent collection
      * @param name       the unique name of the resource to wrap
      * @return a handle for accessing the resource
-     * @throws XMLDBException propagated from {@link Resource#Resource(Collection, String)}
+     * @throws XMLDBException propagated from
+     *                        {@link org.xmldb.api.base.Collection#getResource(String)}
      */
     public Resource resource(Collection collection, String name) throws XMLDBException {
         return new Resource(collection, name);
