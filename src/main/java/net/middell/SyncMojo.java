@@ -242,15 +242,21 @@ public class SyncMojo extends AbstractMojo {
                 Comparator.<URI>naturalOrder().reversed()
         );
 
-        final File projectBase = project.getBasedir();
-        final URI syncBaseUri = (syncBase == null ? null : ExistUri.create(syncBase));
+        final File projectBase = project.getBasedir().getCanonicalFile();
+        final String projectBasePath = projectBase.getPath();
 
+        final URI syncBaseUri = (syncBase == null ? null : ExistUri.create(syncBase));
         for (SyncMapping mapping : syncMappings) {
             URI sourceUri = ExistUri.create(mapping.source);
             if (syncBaseUri != null) {
                 sourceUri = syncBaseUri.resolve(sourceUri);
             }
-            syncMap.put(sourceUri, new File(projectBase, mapping.target).getCanonicalFile());
+            final File targetFile = new File(projectBase, mapping.target).getCanonicalFile();
+            if (targetFile.toPath().startsWith(projectBasePath)) {
+                syncMap.put(sourceUri, targetFile);
+            } else {
+                getLog().warn(String.format("'%s' is not in project dir! Skipped.", targetFile));
+            }
         }
         return syncMap;
     }
