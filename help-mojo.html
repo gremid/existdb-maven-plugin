@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="Date-Revision-yyyymmdd" content="20160102" />
     <meta http-equiv="Content-Language" content="en" />
-    <title>existdb-maven-plugin &#x2013; existdb:sync</title>
+    <title>existdb-maven-plugin &#x2013; existdb:help</title>
     <link rel="stylesheet" href="./css/apache-maven-fluido-1.4.min.css" />
     <link rel="stylesheet" href="./css/site.css" />
     <link rel="stylesheet" href="./css/print.css" media="print" />
@@ -96,50 +96,23 @@
             
   
     <div class="section">
-<h2><a name="existdb:sync"></a>existdb:sync</h2>
+<h2><a name="existdb:help"></a>existdb:help</h2>
       
 <p><b>Full name</b>:</p>
       
-<p>net.middell:existdb-maven-plugin:1.0:sync</p>
+<p>net.middell:existdb-maven-plugin:1.0:help</p>
       
 <p><b>Description</b>:</p>
       
-<div>Synchronizes the local filesystem with a set of collections and/or
-resources in an eXist-db instance. 
-
-<p>Sample configuration:</p>
-
-<div>
-<pre>
-&lt;configuration&gt;
-&lt;serverId&gt;exist&lt;/serverId&gt;
-&lt;syncMappings&gt;
-&lt;syncMapping&gt;
-&lt;source&gt;xmldb:exist://localhost.de:8080/exist/xmlrpc/db/apps/sample/&lt;/source&gt;
-&lt;target&gt;src/main/xml/&lt;/target&gt;
-&lt;/syncMapping&gt;
-&lt;/syncMappings&gt;
-&lt;/configuration&gt;
-</pre></div>
-
-
-<p>Corresponding server settings in
-<tt>$HOME/.m2/settings.xml</tt>:</p>
-
-<div>
-<pre>
-&lt;server&gt;
-&lt;id&gt;exist&lt;/id&gt;
-&lt;username&gt;admin&lt;/username&gt;
-&lt;password&gt;secret&lt;/password&gt;
-&lt;/server&gt;
-</pre></div></div>
+<div>Display help information on existdb-maven-plugin.<br />
+Call <tt>mvn existdb:help -Ddetail=true
+-Dgoal=&lt;goal-name&gt;</tt> to display parameter details.</div>
       
 <p><b>Attributes</b>:</p>
       
 <ul>
         
-<li>Requires a Maven project to be executed.</li>
+<li>The goal is thread-safe and supports parallel builds.</li>
       </ul>
       
 <div class="section">
@@ -160,62 +133,48 @@ resources in an eXist-db instance.
           
 <tr class="b">
             
-<td><b><a href="#serverId">serverId</a></b></td>
+<td><b><a href="#detail">detail</a></b></td>
             
-<td><tt>String</tt></td>
+<td><tt>boolean</tt></td>
             
 <td><tt>-</tt></td>
             
-<td>The id of the <tt>&lt;server/&gt;</tt> entry in the Maven
-settings which provides username and password credentials for
-accessing the eXist-db instance. 
-
-<p>Should this identifier not have been configured, this goal emits
-a warning and exits.</p><br /></td>
+<td>If <tt>true</tt>, display all settable properties for each
+goal.<br /><b>Default value is</b>: <tt>false</tt>.<br /><b>User property is</b>: <tt>detail</tt>.</td>
           </tr>
           
 <tr class="a">
             
-<td><b><a href="#syncBase">syncBase</a></b></td>
+<td><b><a href="#goal">goal</a></b></td>
             
 <td><tt>String</tt></td>
             
 <td><tt>-</tt></td>
             
-<td>An optional base URI of all collections/resources to be
-synchronized. 
-
-<p>All <tt>mapped URIs</tt> are resolved against this base in
-case it has been provided.</p><br /></td>
+<td>The name of the goal for which to show help. If unspecified, all
+goals will be displayed.<br /><b>User property is</b>: <tt>goal</tt>.</td>
           </tr>
           
 <tr class="b">
             
-<td><b><a href="#syncExclusion">syncExclusion</a></b></td>
+<td><b><a href="#indentSize">indentSize</a></b></td>
             
-<td><tt>String</tt></td>
+<td><tt>int</tt></td>
             
 <td><tt>-</tt></td>
             
-<td>An optional regular expression which is matched against eXist-db
-URIs and allows for the exclusion of resources otherwise synced. 
-
-<p>Per default, descriptor files are excluded.</p><br /><b>Default value is</b>: <tt>.*?(repo)|(expath\-pkg)\.xml$</tt>.<br /></td>
+<td>The number of spaces per indentation level, should be positive.<br /><b>Default value is</b>: <tt>2</tt>.<br /><b>User property is</b>: <tt>indentSize</tt>.</td>
           </tr>
           
 <tr class="a">
             
-<td><b><a href="#syncMappings">syncMappings</a></b></td>
+<td><b><a href="#lineLength">lineLength</a></b></td>
             
-<td><tt>List</tt></td>
+<td><tt>int</tt></td>
             
 <td><tt>-</tt></td>
             
-<td>A list of mappings between eXist-db collection/resources, specified
-via URIs, and local filesystem paths. 
-
-<p>Relative filesystem paths are interpreted relative to a
-project's base directory.</p><br /></td>
+<td>The maximum length of a display line, should be positive.<br /><b>Default value is</b>: <tt>80</tt>.<br /><b>User property is</b>: <tt>lineLength</tt>.</td>
           </tr>
         </table>
       </div>
@@ -223,41 +182,25 @@ project's base directory.</p><br /></td>
 <div class="section">
 <h3><a name="Parameter_Details"></a>Parameter Details</h3>
         
-<p><b><a name="serverId">serverId</a>:</b></p>
+<p><b><a name="detail">detail</a>:</b></p>
         
-<div>The id of the <tt>&lt;server/&gt;</tt> entry in the Maven
-settings which provides username and password credentials for
-accessing the eXist-db instance. 
-
-<p>Should this identifier not have been configured, this goal emits
-a warning and exits.</p></div>
+<div>If <tt>true</tt>, display all settable properties for each
+goal.</div>
         
 <ul>
           
-<li><b>Type</b>: <tt>java.lang.String</tt></li>
+<li><b>Type</b>: <tt>boolean</tt></li>
           
 <li><b>Required</b>: <tt>No</tt></li>
-        </ul><hr />
-<p><b><a name="syncBase">syncBase</a>:</b></p>
-        
-<div>An optional base URI of all collections/resources to be
-synchronized. 
-
-<p>All <tt>mapped URIs</tt> are resolved against this base in
-case it has been provided.</p></div>
-        
-<ul>
           
-<li><b>Type</b>: <tt>java.lang.String</tt></li>
+<li><b>User Property</b>: <tt>detail</tt></li>
           
-<li><b>Required</b>: <tt>No</tt></li>
+<li><b>Default</b>: <tt>false</tt></li>
         </ul><hr />
-<p><b><a name="syncExclusion">syncExclusion</a>:</b></p>
+<p><b><a name="goal">goal</a>:</b></p>
         
-<div>An optional regular expression which is matched against eXist-db
-URIs and allows for the exclusion of resources otherwise synced. 
-
-<p>Per default, descriptor files are excluded.</p></div>
+<div>The name of the goal for which to show help. If unspecified, all
+goals will be displayed.</div>
         
 <ul>
           
@@ -265,21 +208,35 @@ URIs and allows for the exclusion of resources otherwise synced.
           
 <li><b>Required</b>: <tt>No</tt></li>
           
-<li><b>Default</b>: <tt>.*?(repo)|(expath\-pkg)\.xml$</tt></li>
+<li><b>User Property</b>: <tt>goal</tt></li>
         </ul><hr />
-<p><b><a name="syncMappings">syncMappings</a>:</b></p>
+<p><b><a name="indentSize">indentSize</a>:</b></p>
         
-<div>A list of mappings between eXist-db collection/resources, specified
-via URIs, and local filesystem paths. 
-
-<p>Relative filesystem paths are interpreted relative to a
-project's base directory.</p></div>
+<div>The number of spaces per indentation level, should be positive.</div>
         
 <ul>
           
-<li><b>Type</b>: <tt>java.util.List</tt></li>
+<li><b>Type</b>: <tt>int</tt></li>
           
 <li><b>Required</b>: <tt>No</tt></li>
+          
+<li><b>User Property</b>: <tt>indentSize</tt></li>
+          
+<li><b>Default</b>: <tt>2</tt></li>
+        </ul><hr />
+<p><b><a name="lineLength">lineLength</a>:</b></p>
+        
+<div>The maximum length of a display line, should be positive.</div>
+        
+<ul>
+          
+<li><b>Type</b>: <tt>int</tt></li>
+          
+<li><b>Required</b>: <tt>No</tt></li>
+          
+<li><b>User Property</b>: <tt>lineLength</tt></li>
+          
+<li><b>Default</b>: <tt>80</tt></li>
         </ul>
       </div>
     </div>
